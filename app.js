@@ -526,7 +526,8 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
     this.sendLine('[' + colorize.ansify('#bold[1]') + '] Your Photostream');
     this.sendLine('[' + colorize.ansify('#bold[2]') + '] Photos from your contacts');
     this.sendLine('[' + colorize.ansify('#bold[3]') + '] Color: ' + (this.session.get('colors') ? colorize.ansify('#green[ON]') : 'OFF'));
-    this.sendLine('[' + colorize.ansify('#bold[4]') + '] Sign out');
+    this.sendLine('[' + colorize.ansify('#bold[4]') + '] About');
+    this.sendLine('[' + colorize.ansify('#bold[5]') + '] Sign out');
     this.sendLine('');
 
   },
@@ -559,6 +560,19 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
         break;
 
       case '4':
+        this.sendLine('');
+        this.sendLine('space claw v1.0');
+        this.sendLine('');
+        this.sendLine('Bertrand Fan <bertrand@fan.net>');
+        this.sendLine('http://thatsaspicymeatball.com');
+        this.sendLine('Twitter: @bertrandom');
+        this.sendLine('');
+        this.sendLine('Source code available on github: https://github.com/bertrandom/spaceclaw');
+        this.sendLine('');
+        this.displayOptions();
+        break;
+
+      case '5':
         this.sendLine('');
         this.sendLine('NO CARRIER');
         this.sendLine('');
