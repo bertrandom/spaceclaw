@@ -6,6 +6,8 @@ If you'd like to see it in action, open a terminal and type:
 
 	telnet spaceclaw.net
 
+![screenshot](http://farm9.staticflickr.com/8249/8594938142_393d33de80_z.jpg)
+
 ## Installation
 
 ### Development Server setup
