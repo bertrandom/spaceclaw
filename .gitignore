@@ -1,0 +1,4 @@
+.DS_Store
+sftp-config.json
+node_modules/
+config/secrets.json

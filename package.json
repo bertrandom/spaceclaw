@@ -1,0 +1,17 @@
+{
+	"name":	"spaceclaw",
+	"version": "0.1.0",
+	"author": "Bertrand Fan <bertrand@fan.net>",
+	"description": "Flickr Telnet BBS",
+	"dependencies": {
+		"express": "*",
+		"underscore": "1.4.4",
+		"sol-telnet": "*",
+		"oauth": "*",
+		"redis": "*",
+		"connect-redis": "*",
+		"yui": "3.9.x",
+		"colorize": "0.1.x",
+		"ejs": "*"
+	}
+}
