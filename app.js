@@ -793,7 +793,7 @@ var TelnetSession = Y.Base.create('TelnetSession', Y.Base, [], {
   displayLoginPrompt: function() {
 
     this.sendLine("");
-    this.sendLine(colorize.ansify("Please go to this URL to login: #bold[http://" + config.host + (typeof config.port !== 'undefined' ? ':' + config.port : '') + "/login/" + this.get('sessionId') + '/]' + " or enter your passphrase."));
+    this.sendLine(colorize.ansify("Please go to this URL to login: #bold[https://" + config.host + (typeof config.port !== 'undefined' ? ':' + config.port : '') + "/login/" + this.get('sessionId') + '/]' + " or enter your passphrase."));
     this.sendLine("");
 
   },
