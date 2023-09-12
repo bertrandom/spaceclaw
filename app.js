@@ -39,12 +39,12 @@ app.use(express.bodyParser());
 app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 
-var oa = new OAuth("http://www.flickr.com/services/oauth/request_token",
-  "http://www.flickr.com/services/oauth/access_token",
+var oa = new OAuth("https://www.flickr.com/services/oauth/request_token",
+  "https://www.flickr.com/services/oauth/access_token",
   secrets.flickr_api_key,
   secrets.flickr_api_secret,
   "1.0A",
-  "http://" + config.host + (typeof config.port !== 'undefined' ? ':' + config.port : '') + "/callback",
+  "https://" + config.host + (typeof config.port !== 'undefined' ? ':' + config.port : '') + "/callback",
   "HMAC-SHA1");
 
 app.get('/', function(req, res){
@@ -59,6 +59,8 @@ app.get('/login/:sessionId/', function(req, res){
 
   oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results) {
 
+    console.log('error', error);
+
     if (error) {
       res.send('Flickr has the hiccups, please try again later.', 500);
     } else {
@@ -66,7 +68,7 @@ app.get('/login/:sessionId/', function(req, res){
       req.session.oauthRequestToken = oauthToken;
       req.session.oauthRequestTokenSecret = oauthTokenSecret;
       req.session.sessionId = req.params.sessionId;
-      res.redirect("http://www.flickr.com/services/oauth/authorize?oauth_token=" + oauthToken + '&perms=read');
+      res.redirect("https://www.flickr.com/services/oauth/authorize?oauth_token=" + oauthToken + '&perms=read');
         
     }
 
