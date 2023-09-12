@@ -565,8 +565,8 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
         this.sendLine('');
         this.sendLine('space claw v1.0');
         this.sendLine('');
-        this.sendLine('Bertrand Fan <bertrand@fan.net>');
-        this.sendLine('http://thatsaspicymeatball.com');
+        this.sendLine('Bertrand Fan <bert@bert.org>');
+        this.sendLine('https://bert.org');
         this.sendLine('Twitter: @bertrandom');
         this.sendLine('');
         this.sendLine('Source code available on github: https://github.com/bertrandom/spaceclaw');
