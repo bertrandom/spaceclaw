@@ -10,7 +10,7 @@
     "oauth": "0.9.10",
     "redis": "0.8.2",
     "connect-redis": "1.4.5",
-    "yui": "3.9.x",
+    "yui": "3.10.x",
     "colorize": "0.1.x",
     "ejs": "0.8.3"
   }
