@@ -12,6 +12,6 @@
     "connect-redis": "1.4.5",
     "yui": "3.9.x",
     "colorize": "0.1.x",
-    "ejs": "0.8.3"
+    "ejs": "3.1.7"
   }
 }
