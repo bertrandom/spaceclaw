@@ -298,7 +298,10 @@ var Photostream = Y.Base.create('Photostream', Y.Base, [], {
     }
 
     if (this.session.get('colors') && typeof process.env.SPACE_CLAW_DEV === 'undefined') {
-      option += ' --colors --color-depth=24';
+      option += ' --colors';
+
+      var colorDepth = this.session.get('colordepth') ? this.session.get('colordepth') : 8;
+      option += ' --color-depth=' + colorDepth;
     }
 
     exec('jp2a ' + option + ' ' + photo.url_s, Y.bind(function callback(error, stdout, stderr){
@@ -455,7 +458,10 @@ var ContactsPhotos = Y.Base.create('ContactsPhotos', Y.Base, [], {
     }
 
     if (this.session.get('colors') && typeof process.env.SPACE_CLAW_DEV === 'undefined') {
-      option += ' --colors --color-depth=24';
+      option += ' --colors';
+
+      var colorDepth = this.session.get('colordepth') ? this.session.get('colordepth') : 8;
+      option += ' --color-depth=' + colorDepth;
     }
 
     exec('jp2a ' + option + ' ' + photo.url_s, Y.bind(function callback(error, stdout, stderr){
@@ -528,8 +534,28 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
     this.sendLine('[' + colorize.ansify('#bold[1]') + '] Your Photostream');
     this.sendLine('[' + colorize.ansify('#bold[2]') + '] Photos from your contacts');
     this.sendLine('[' + colorize.ansify('#bold[3]') + '] Color: ' + (this.session.get('colors') ? colorize.ansify('#green[ON]') : 'OFF'));
-    this.sendLine('[' + colorize.ansify('#bold[4]') + '] About');
-    this.sendLine('[' + colorize.ansify('#bold[5]') + '] Sign out');
+
+    var colorDepth = this.session.get('colordepth') ? this.session.get('colordepth') : 8;
+
+    switch (colorDepth) {
+          
+      case 4:
+        this.sendLine('[' + colorize.ansify('#bold[4]') + '] Color Depth: ANSI');
+        break;
+
+      case 24:
+        this.sendLine('[' + colorize.ansify('#bold[4]') + '] Color Depth: 24-bit color');
+        break;
+
+      case 8:
+      default:
+        this.sendLine('[' + colorize.ansify('#bold[4]') + '] Color Depth: 256 colors');
+        break;
+      
+    }
+
+    this.sendLine('[' + colorize.ansify('#bold[5]') + '] About');
+    this.sendLine('[' + colorize.ansify('#bold[6]') + '] Sign out');
     this.sendLine('');
 
   },
@@ -562,8 +588,33 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
         break;
 
       case '4':
+
+        switch (this.session.get('colordepth')) {
+          
+          case 4:
+            this.session.set('colordepth', 8);
+            this.sendLine(colorize.ansify('Color depth is now 256 colors.'));
+            break;
+
+          case 24:
+            this.session.set('colordepth', 4);
+            this.sendLine(colorize.ansify('Color depth is now ANSI.'));
+            break;
+
+          case 8:
+          default:
+            this.session.set('colordepth', 24);
+            this.sendLine(colorize.ansify('Color depth is now 24-bit color.'));
+            break;
+          
+        }
+
+        this.displayOptions();
+        break;
+
+      case '5':
         this.sendLine('');
-        this.sendLine('space claw v1.0');
+        this.sendLine('space claw v1.1');
         this.sendLine('');
         this.sendLine('Bertrand Fan <bert@bert.org>');
         this.sendLine('https://bert.org');
@@ -574,7 +625,7 @@ var MainMenu = Y.Base.create('MainMenu', Y.Base, [], {
         this.displayOptions();
         break;
 
-      case '5':
+      case '6':
         this.sendLine('');
         this.sendLine('NO CARRIER');
         this.sendLine('');
