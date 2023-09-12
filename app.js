@@ -298,7 +298,7 @@ var Photostream = Y.Base.create('Photostream', Y.Base, [], {
     }
 
     if (this.session.get('colors') && typeof process.env.SPACE_CLAW_DEV === 'undefined') {
-      option += ' --colors';
+      option += ' --colors --color-depth=24';
     }
 
     exec('jp2a ' + option + ' ' + photo.url_s, Y.bind(function callback(error, stdout, stderr){
@@ -455,7 +455,7 @@ var ContactsPhotos = Y.Base.create('ContactsPhotos', Y.Base, [], {
     }
 
     if (this.session.get('colors') && typeof process.env.SPACE_CLAW_DEV === 'undefined') {
-      option += ' --colors';
+      option += ' --colors --color-depth=24';
     }
 
     exec('jp2a ' + option + ' ' + photo.url_s, Y.bind(function callback(error, stdout, stderr){
