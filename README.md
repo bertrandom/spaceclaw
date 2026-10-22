@@ -6,6 +6,8 @@ If you'd like to see it in action, open a terminal and type:
 
 	telnet spaceclaw.net
 
+<img width="640" height="487" alt="687474703a2f2f6661726d392e737461746963666c69636b722e636f6d2f383234392f383539343933383134325f333933643333646538305f7a2e6a7067" src="https://github.com/user-attachments/assets/82a6ec9d-c9d2-47b5-a51c-16178fc25098" />
+
 This is a Python rewrite of the original Node.js app. A single process runs both
 the telnet BBS (port 23) and the small web app that handles Flickr OAuth login
 (port 8080). Users and their passphrases live in SQLite.
