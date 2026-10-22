@@ -1,0 +1,32 @@
+[Unit]
+Description=space claw (Flickr telnet BBS)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bertrand
+Group=bertrand
+WorkingDirectory=/home/bertrand/spaceclaw
+Environment=SPACECLAW_DB_PATH=/var/lib/spaceclaw/spaceclaw.db
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/bertrand/spaceclaw/.venv/bin/spaceclaw serve
+Restart=always
+RestartSec=2
+
+# Bind telnet on port 23 without root.
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+# Creates /var/lib/spaceclaw owned by User= for the SQLite database.
+# The DB holds OAuth tokens, so keep it private to the service user.
+StateDirectory=spaceclaw
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
